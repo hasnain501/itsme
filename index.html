@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dynamic Single Page</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <header>
+        <div class="navbar">
+            <h1><b><i>Creative Coding Hub by "Hasnain"</i></b></h1>
+            <nav>
+                <ul>
+                    <li><a href="#home">Home</a></li>
+                    <li><a href="#about">About</a></li>
+                    <li><a href="#services">Services</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <section id="home">
+        <h2>Welcome.</h2>
+        <p><b>Join me in my journey to build amazing web experiences.</b></p>
+    </section>
+
+    <section id="about">
+        <h2>About Me</h2>
+        <p><b>I am a passionate student learning web Development, specializing in HTML, CSS, and javaScript.</b></p>
+    </section>
+
+    <section id="services">
+        <h2>Services</h2>
+        <p>Here are the services I offer:</p>
+        <ul>
+            <li>Web Design (HTML & CSS)</li>
+            <li>Responsive Web Layouts</li>
+            <li>Learnig and Experimenting with SEO</li>
+        </ul>
+    </section>
+
+    <section id="contact">
+        <h2>Contact</h2>
+        <form id="contact-form">
+            <input type="text" id="name" placeholder="Your Name" required>
+            <input type="email" id="email" placeholder="Your Email" required>
+            <textarea id="message" placeholder="Your Message" required></textarea>
+            <button type="submit">Send Message</button>
+        </form>
+        <div id="form-message"></div>
+    </section>
+
+    <footer>
+        <p>&copy; 2024 My Website Designed by [HASNAIN]</p>
+    </footer>
+
+    <button id="scrollTopBtn" title="Go to top">Top</button>
+
+    <script>
+        // Smooth Scroll for navigation links
+        const links = document.querySelectorAll('nav ul li a');
+        links.forEach(link => {
+            link.addEventListener('click', function (e) {
+                e.preventDefault();
+                const targetId = this.getAttribute('href').substring(1);
+                document.getElementById(targetId).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+
+        // Scroll to Top Button
+        const scrollTopBtn = document.getElementById("scrollTopBtn");
+
+        window.onscroll = function() {
+            if (document.body.scrollTop > 100 || document.documentElement.scrollTop > 100) {
+                scrollTopBtn.style.display = "block";
+            } else {
+                scrollTopBtn.style.display = "none";
+            }
+        };
+
+        scrollTopBtn.addEventListener("click", function() {
+            window.scrollTo({ top: 0, behavior: "smooth" });
+        });
+
+        // Form Validation
+        const form = document.getElementById('contact-form');
+        const formMessage = document.getElementById('form-message');
+
+        form.addEventListener('submit', function(e) {
+            e.preventDefault();
+            const name = document.getElementById('name').value;
+            const email = document.getElementById('email').value;
+            const message = document.getElementById('message').value;
+
+            if (name && email && message) {
+                formMessage.textContent = "Thank you for contacting us, " + name + ". We will get back to you soon!";
+                formMessage.style.color = "green";
+            } else {
+                formMessage.textContent = "Please fill all the fields!";
+                formMessage.style.color = "red";
+            }
+        });
+    </script>
+</body>
+</html>
+
